@@ -14,9 +14,9 @@ def validate_file_name(name, allow_relative_path=False):
         # FileField.generate_filename() where all file paths are expected to be
         # Unix style (with forward slashes).
         path = pathlib.PurePosixPath(name)
-        if path.is_absolute() or ".." in path.parts:
+        if ".." in path.parts:
             raise SuspiciousFileOperation(
-                "Detected path traversal attempt in '%s'" % name
+                ".......Detected path traversal attempt in '%s'" % name
             )
     elif name != os.path.basename(name):
         raise SuspiciousFileOperation("File name '%s' includes path elements" % name)
